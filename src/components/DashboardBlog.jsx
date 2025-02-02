@@ -23,7 +23,7 @@ const DashboardBlog = () => {
 
     // Handle Add Blog
     const handleAddBlog = () => {
-        console.log('invoke')
+        console.log(token)
         api.post('/blogs', newBlog,{headers: { 
             authToken: token ? `Bearer ${token}` : "", // Standard approach
               },withCredentials: true})
