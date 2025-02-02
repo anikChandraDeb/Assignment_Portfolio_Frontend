@@ -27,7 +27,7 @@ const DashboardService = () => {
         Authorization: token ? `Bearer ${token}` : "", 
           },withCredentials: true})
       .then(response => {
-        setServices([...services, response.data]);
+        setServices([response.data,...services ]);
         setNewService({ title: '', description: '' }); 
       })
       .catch(error => {

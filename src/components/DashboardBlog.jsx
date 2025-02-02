@@ -29,7 +29,7 @@ const DashboardBlog = () => {
               },withCredentials: true})
             .then(response => {
                 // console.log('hhhh')
-                setBlogs([...blogs, response.data]);
+                setBlogs([response.data,...blogs ]);
                 setNewBlog({ title: '', content: '' }); 
             })
             .catch(error => {

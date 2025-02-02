@@ -27,7 +27,7 @@ const DashboardTeam = () => {
             Authorization: token ? `Bearer ${token}` : "",
               },withCredentials: true})
       .then(response => {
-        setTeams([...teams, response.data]);
+        setTeams([response.data,...teams ]);
         setNewTeam({ name: '', description: '' });
       })
       .catch(error => {
