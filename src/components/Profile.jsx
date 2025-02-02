@@ -8,7 +8,9 @@ const UserProfile = () => {
 
   useEffect(() => {
     // Fetch logged-in user's data from the backend
-    api.get('/profile',{withCredentials: true}) 
+    api.get('/profile',{headers: { 
+        Authorization: token ? `Bearer ${token}` : "", 
+          },withCredentials: true}) 
       .then(response => {
         setUser(response.data);
         setLoading(false);
