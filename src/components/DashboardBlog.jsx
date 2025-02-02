@@ -25,7 +25,7 @@ const DashboardBlog = () => {
     const handleAddBlog = () => {
         console.log(token)
         api.post('/blogs', newBlog,{headers: { 
-            authToken: token ? `Bearer ${token}` : "", // Standard approach
+            Authorization: token ? `Bearer ${token}` : "", // Standard approach
               },withCredentials: true})
             .then(response => {
                 console.log('hhhh')
