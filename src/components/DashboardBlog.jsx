@@ -11,7 +11,7 @@ const DashboardBlog = () => {
     const token = localStorage.getItem("token");
     useEffect(() => {
         // Fetch all blogs when the component mounts
-        api.get('/blogs')
+        api.get('/blogs/0')
             .then(response => {
                 setBlogs(response.data);
                 console.log(response)
