@@ -23,14 +23,14 @@ const DashboardBlog = () => {
 
     // Handle Add Blog
     const handleAddBlog = () => {
-        console.log(token)
+        // console.log(token)
         api.post('/blogs', newBlog,{headers: { 
-            Authorization: token ? `Bearer ${token}` : "", // Standard approach
+            Authorization: token ? `Bearer ${token}` : "", 
               },withCredentials: true})
             .then(response => {
-                console.log('hhhh')
+                // console.log('hhhh')
                 setBlogs([...blogs, response.data]);
-                setNewBlog({ title: '', content: '' }); // Reset form
+                setNewBlog({ title: '', content: '' }); 
             })
             .catch(error => {
                 console.error('Error adding blog:', error);
@@ -45,11 +45,11 @@ const DashboardBlog = () => {
 
     const handleUpdateBlog = () => {
         api.put(`/blogs/${editingBlog._id}`, newBlog,{headers: { 
-            Authorization: token ? `Bearer ${token}` : "", // Standard approach
+            Authorization: token ? `Bearer ${token}` : "", 
               },withCredentials: true})
             .then(response => {
                 setBlogs(blogs.map(blog => blog._id === editingBlog._id ? response.data : blog));
-                setEditingBlog(null); // Clear editing mode
+                setEditingBlog(null); 
                 setNewBlog({ title: '', content: '' });
             })
             .catch(error => {
@@ -60,7 +60,7 @@ const DashboardBlog = () => {
     // Handle Delete Blog
     const handleDeleteBlog = (id) => {
         api.delete(`/blogs/${id}`,{headers: { 
-            Authorization: token ? `Bearer ${token}` : "", // Standard approach
+            Authorization: token ? `Bearer ${token}` : "", 
               },withCredentials: true})
             .then(() => {
                 setBlogs(blogs.filter(blog => blog._id !== id));

@@ -8,7 +8,7 @@ const DashboardService = () => {
   const [newService, setNewService] = useState({ title: '', description: '' });
   const [editingService, setEditingService] = useState(null);
   const token = localStorage.getItem("token");
-  
+
   useEffect(() => {
     // Fetch all services when the component mounts
     api.get('/services')
@@ -24,11 +24,11 @@ const DashboardService = () => {
   // Handle Add Service
   const handleAddService = () => {
     api.post('/services', newService, {headers: { 
-        Authorization: token ? `Bearer ${token}` : "", // Standard approach
+        Authorization: token ? `Bearer ${token}` : "", 
           },withCredentials: true})
       .then(response => {
         setServices([...services, response.data]);
-        setNewService({ title: '', description: '' }); // Reset form
+        setNewService({ title: '', description: '' }); 
       })
       .catch(error => {
         console.error('Error adding service:', error);
@@ -43,7 +43,7 @@ const DashboardService = () => {
 
   const handleUpdateService = () => {
     api.put(`/services/${editingService._id}`, newService, {headers: { 
-        Authorization: token ? `Bearer ${token}` : "", // Standard approach
+        Authorization: token ? `Bearer ${token}` : "",
           },withCredentials: true})
       .then(response => {
         setServices(services.map(service => service._id === editingService._id ? response.data : service));
@@ -58,7 +58,7 @@ const DashboardService = () => {
   // Handle Delete Service
   const handleDeleteService = (id) => {
     api.delete(`/services/${id}`, {headers: { 
-        Authorization: token ? `Bearer ${token}` : "", // Standard approach
+        Authorization: token ? `Bearer ${token}` : "", 
           },withCredentials: true})
       .then(() => {
         setServices(services.filter(service => service._id !== id));

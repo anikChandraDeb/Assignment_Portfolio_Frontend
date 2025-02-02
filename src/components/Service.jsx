@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../axios';
-import '../assets/css/Service.css'; // Import the CSS file
+import '../assets/css/Service.css'; 
 
 const Service = () => {
     const [services, setServices] = useState([]);

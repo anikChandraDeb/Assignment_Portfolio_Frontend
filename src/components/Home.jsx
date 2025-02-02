@@ -1,5 +1,5 @@
 import React from "react";
-import Blog from "./Blog"; // Import Blog Component
+import Blog from "./Blog"; 
 import Footer from "./Footer";
 const Home = () => {
   return (
@@ -13,7 +13,7 @@ const Home = () => {
       </section>
 
       {/* Blog Section */}
-      <Blog limit="6" /> {/* Add Blog Component Here */}
+      <Blog limit="6" />
 
     </>
   );

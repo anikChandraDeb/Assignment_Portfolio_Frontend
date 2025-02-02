@@ -8,7 +8,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     // Fetch logged-in user's data from the backend
-    api.get('/profile',{withCredentials: true}) // Modify this to your actual endpoint
+    api.get('/profile',{withCredentials: true}) 
       .then(response => {
         setUser(response.data);
         setLoading(false);

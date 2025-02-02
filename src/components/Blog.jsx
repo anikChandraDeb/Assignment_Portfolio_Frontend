@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../axios';
-import '../assets/css/Blog.css'; // Import CSS for styling
+import '../assets/css/Blog.css'; 
 
 const Blog = ({ limit }) => {
     const [blogs, setBlogs] = useState([]);

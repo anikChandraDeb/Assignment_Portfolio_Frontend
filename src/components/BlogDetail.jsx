@@ -1,10 +1,10 @@
 // src/components/BlogDetail.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import api from '../axios'; // Assuming your axios instance is here
+import api from '../axios'; 
 
 const BlogDetail = () => {
-  const { blogId } = useParams(); // Get the blog ID from the URL params
+  const { blogId } = useParams(); 
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +20,7 @@ const BlogDetail = () => {
         setError('Error fetching blog details');
         setLoading(false);
       });
-  }, [blogId]); // Re-run the effect when blogId changes
+  }, [blogId]); 
 
   if (loading) {
     return <div>Loading blog details...</div>;

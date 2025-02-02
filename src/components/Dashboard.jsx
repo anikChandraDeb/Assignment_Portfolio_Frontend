@@ -1,7 +1,7 @@
 // src/components/DashboardNavbar.jsx
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import api from '../axios'; // Assuming your axios instance is here
+import api from '../axios'; 
 
 const DashboardNavbar = () => {
   const [teamCount, setTeamCount] = useState(0);

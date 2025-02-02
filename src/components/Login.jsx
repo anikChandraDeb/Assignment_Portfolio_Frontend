@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
-import api from "../axios"; // Assuming you have an axios instance for API calls
+import api from "../axios"; 
 import Cookies from 'js-cookie';
 import '../assets/css/Login.css';
 
@@ -14,7 +14,7 @@ const Login = () => {
 
     useEffect(() => {
         const handleBackButton = () => {
-            navigate("/", { replace: true }); // Redirect to home page
+            navigate("/", { replace: true }); 
         };
 
         window.addEventListener("popstate", handleBackButton);
@@ -28,15 +28,15 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await api.post("/login", { email, password });
-            localStorage.setItem("token", response.data.token); // Store token
+            localStorage.setItem("token", response.data.token); 
             Cookies.set("authToken", response.data.token, {
                 expires: 1, // 1 day
                 path: "/",
                 sameSite: "None",
-                secure: true, // Only use if on HTTPS
+                secure: true, 
             });
             console.log(response)
-            navigate("/dashboard"); // Redirect to Dashboard after login
+            navigate("/dashboard"); 
         } catch (err) {
             setError("Invalid email or password");
         }

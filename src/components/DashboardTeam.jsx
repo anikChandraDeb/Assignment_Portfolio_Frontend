@@ -13,7 +13,7 @@ const DashboardTeam = () => {
     // Fetch all teams when the component mounts
     api.get('/team')
       .then(response => {
-        setTeams(response.data); // Ensure the response has the correct structure
+        setTeams(response.data); 
         console.log('Teams fetched:', response);
       })
       .catch(error => {
@@ -24,11 +24,11 @@ const DashboardTeam = () => {
   // Handle Add Team
   const handleAddTeam = () => {
     api.post('/team', newTeam, {headers: { 
-            Authorization: token ? `Bearer ${token}` : "", // Standard approach
+            Authorization: token ? `Bearer ${token}` : "",
               },withCredentials: true})
       .then(response => {
         setTeams([...teams, response.data]);
-        setNewTeam({ name: '', description: '' }); // Reset form
+        setNewTeam({ name: '', description: '' });
       })
       .catch(error => {
         console.error('Error adding team:', error);
@@ -44,12 +44,12 @@ const DashboardTeam = () => {
   // Handle Update Team
   const handleUpdateTeam = () => {
     api.put(`/team/${editingTeam._id}`, newTeam,{headers: { 
-        Authorization: token ? `Bearer ${token}` : "", // Standard approach
+        Authorization: token ? `Bearer ${token}` : "",
           },withCredentials: true})
       .then(response => {
         setTeams(teams.map(team => team._id === editingTeam._id ? response.data : team));
-        setEditingTeam(null); // Clear editing mode
-        setNewTeam({ name: '', description: '' }); // Reset form
+        setEditingTeam(null); 
+        setNewTeam({ name: '', description: '' }); 
       })
       .catch(error => {
         console.error('Error updating team:', error);
@@ -59,7 +59,7 @@ const DashboardTeam = () => {
   // Handle Delete Team
   const handleDeleteTeam = (id) => {
     api.delete(`/team/${id}`, {headers: { 
-        Authorization: token ? `Bearer ${token}` : "", // Standard approach
+        Authorization: token ? `Bearer ${token}` : "", 
           },withCredentials: true})
       .then(() => {
         setTeams(teams.filter(team => team._id !== id));
