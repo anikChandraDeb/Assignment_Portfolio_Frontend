@@ -38,7 +38,11 @@ const Login = () => {
             console.log(response)
             navigate("/dashboard"); 
         } catch (err) {
-            setError("Invalid email or password");
+            if (err.response) {
+                setError(err.response.data.message); // Show backend error message
+            } else {
+                setError("Something went wrong. Please try again.");
+            }
         }
     };
 
