@@ -8,7 +8,7 @@ const DashboardBlog = () => {
     const [blogs, setBlogs] = useState([]);
     const [newBlog, setNewBlog] = useState({ title: '', content: '' });
     const [editingBlog, setEditingBlog] = useState(null);
-
+    const token = localStorage.getItem("token");
     useEffect(() => {
         // Fetch all blogs when the component mounts
         api.get('/blogs/6')
@@ -24,7 +24,9 @@ const DashboardBlog = () => {
     // Handle Add Blog
     const handleAddBlog = () => {
         console.log('invoke')
-        api.post('/blogs', newBlog,{withCredentials: true})
+        api.post('/blogs', newBlog,{headers: { 
+            authToken: token ? `Bearer ${token}` : "", // Standard approach
+              },withCredentials: true})
             .then(response => {
                 setBlogs([...blogs, response.data]);
                 setNewBlog({ title: '', content: '' }); // Reset form
