@@ -44,7 +44,9 @@ const DashboardBlog = () => {
     };
 
     const handleUpdateBlog = () => {
-        api.put(`/blogs/${editingBlog._id}`, newBlog,{withCredentials: true})
+        api.put(`/blogs/${editingBlog._id}`, newBlog,{headers: { 
+            Authorization: token ? `Bearer ${token}` : "", // Standard approach
+              },withCredentials: true})
             .then(response => {
                 setBlogs(blogs.map(blog => blog._id === editingBlog._id ? response.data : blog));
                 setEditingBlog(null); // Clear editing mode
@@ -57,7 +59,9 @@ const DashboardBlog = () => {
 
     // Handle Delete Blog
     const handleDeleteBlog = (id) => {
-        api.delete(`/blogs/${id}`,{withCredentials: true})
+        api.delete(`/blogs/${id}`,{headers: { 
+            Authorization: token ? `Bearer ${token}` : "", // Standard approach
+              },withCredentials: true})
             .then(() => {
                 setBlogs(blogs.filter(blog => blog._id !== id));
             })

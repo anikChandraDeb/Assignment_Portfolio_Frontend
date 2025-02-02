@@ -7,6 +7,7 @@ const DashboardTeam = () => {
   const [teams, setTeams] = useState([]);
   const [newTeam, setNewTeam] = useState({ name: '', description: '' });
   const [editingTeam, setEditingTeam] = useState(null);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     // Fetch all teams when the component mounts
@@ -22,7 +23,9 @@ const DashboardTeam = () => {
 
   // Handle Add Team
   const handleAddTeam = () => {
-    api.post('/team', newTeam, { withCredentials: true })
+    api.post('/team', newTeam, {headers: { 
+            Authorization: token ? `Bearer ${token}` : "", // Standard approach
+              },withCredentials: true})
       .then(response => {
         setTeams([...teams, response.data]);
         setNewTeam({ name: '', description: '' }); // Reset form
@@ -40,7 +43,9 @@ const DashboardTeam = () => {
 
   // Handle Update Team
   const handleUpdateTeam = () => {
-    api.put(`/team/${editingTeam._id}`, newTeam, { withCredentials: true })
+    api.put(`/team/${editingTeam._id}`, newTeam,{headers: { 
+        Authorization: token ? `Bearer ${token}` : "", // Standard approach
+          },withCredentials: true})
       .then(response => {
         setTeams(teams.map(team => team._id === editingTeam._id ? response.data : team));
         setEditingTeam(null); // Clear editing mode
@@ -53,7 +58,9 @@ const DashboardTeam = () => {
 
   // Handle Delete Team
   const handleDeleteTeam = (id) => {
-    api.delete(`/team/${id}`, { withCredentials: true })
+    api.delete(`/team/${id}`, {headers: { 
+        Authorization: token ? `Bearer ${token}` : "", // Standard approach
+          },withCredentials: true})
       .then(() => {
         setTeams(teams.filter(team => team._id !== id));
       })
