@@ -28,6 +28,7 @@ const DashboardBlog = () => {
             authToken: token ? `Bearer ${token}` : "", // Standard approach
               },withCredentials: true})
             .then(response => {
+                console.log('hhhh')
                 setBlogs([...blogs, response.data]);
                 setNewBlog({ title: '', content: '' }); // Reset form
             })
