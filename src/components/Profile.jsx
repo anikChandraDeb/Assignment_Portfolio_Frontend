@@ -5,7 +5,8 @@ const UserProfile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const token = localStorage.getItem("token");
+  
   useEffect(() => {
     // Fetch logged-in user's data from the backend
     api.get('/profile',{headers: { 
