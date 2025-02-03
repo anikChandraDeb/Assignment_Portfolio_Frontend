@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
+import '../assets/css/Navbar.css';
 const Navbar = () => {
     const [isCollapsed, setIsCollapsed] = useState(true);
 
