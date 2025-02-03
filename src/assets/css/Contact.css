@@ -1,13 +1,13 @@
 .contact-section {
     padding: 60px 0;
-    background: linear-gradient(135deg, #00c6ff, #0072ff);
-    color: white;
+    background: #F0FFFF;
+    color: black;
     text-align: center;
     min-height: 100vh;
 }
 
 .contact-card {
-    background: white;
+    background: #F0FFFF;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
@@ -17,13 +17,13 @@
 .section-title {
     font-size: 36px;
     font-weight: bold;
-    color: #333;
+    color: black;
     margin-bottom: 15px;
 }
 
 .contact-text {
     font-size: 18px;
-    color: #666;
+    color: black;
     margin-bottom: 40px;
     line-height: 1.6;
 }
@@ -34,7 +34,7 @@
 }
 
 .contact-form {
-    background: white;
+    background: #F0FFFF;
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
@@ -54,7 +54,7 @@
 
 .btn-dark {
     background-color: #007bff;
-    color: white;
+    color: black;
     border-radius: 5px;
     padding: 10px;
     text-transform: uppercase;
