@@ -1,6 +1,6 @@
 /* Navbar Styling */
 .navbar {
-    background: linear-gradient(135deg, #2c3e50, #4ca1af); /* Matches About & Blog Design */
+    background: black; /* Matches About & Blog Design */
     padding: 15px 0;
     transition: all 0.3s ease-in-out;
 }
