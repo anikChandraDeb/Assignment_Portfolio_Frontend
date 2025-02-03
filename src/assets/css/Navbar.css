@@ -9,13 +9,13 @@
 .navbar-brand {
     font-size: 1.8rem;
     font-weight: bold;
-    color: black;
+    color: white;
 }
 
 /* Navbar Links */
 .navbar-nav .nav-link {
     font-size: 1.1rem;
-    color: black;
+    color: white;
     margin-right: 15px;
     transition: color 0.3s;
 }
