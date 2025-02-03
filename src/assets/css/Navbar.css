@@ -1,7 +1,6 @@
 /* Navbar Styling */
 .navbar {
     background: black; /* Matches About & Blog Design */
-    padding: 15px 0;
     transition: all 0.3s ease-in-out;
 }
 
