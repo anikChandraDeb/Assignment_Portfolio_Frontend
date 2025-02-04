@@ -33,7 +33,7 @@ const BlogDetail = () => {
   return (
     <div Style="padding: 80px;
             background: azure;
-            color: white;
+            color: black;
             min-height: 100vh;
             @media (max-width: 768px) {
                 padding: 20px;
