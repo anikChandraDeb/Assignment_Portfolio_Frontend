@@ -31,12 +31,14 @@ const BlogDetail = () => {
   }
 
   return (
-    <div Style="padding: 80px;
+    <div Style="padding: 50px;
             background: azure;
             color: black;
             min-height: 100vh;
             @media (max-width: 768px) {
-                padding: 20px;
+                padding: 10px;
+                h2{font-size:20px;}
+                p{font-size:15px;}
             }
   ">
       <h2>{blog.title}</h2>
