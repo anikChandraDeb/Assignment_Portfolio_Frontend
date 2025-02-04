@@ -42,7 +42,7 @@
 }
 
 .skills-list span {
-    background: rgba(255, 255, 255, 0.2);
+    background: #dadada;
     padding: 8px 15px;
     border-radius: 20px;
     font-size: 0.9rem;

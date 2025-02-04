@@ -32,9 +32,13 @@ const BlogDetail = () => {
 
   return (
     <div Style="padding: 80px;
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
-  color: white;
-  min-height: 100vh;">
+            background: azure;
+            color: white;
+            min-height: 100vh;
+            @media (max-width: 768px) {
+                padding: 20px;
+            }
+  ">
       <h2>{blog.title}</h2>
       <div>
         <p>{blog.content}</p>
