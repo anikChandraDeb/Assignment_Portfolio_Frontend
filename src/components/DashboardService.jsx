@@ -5,7 +5,7 @@ import api from '../axios.js';
 
 const DashboardService = () => {
   const [services, setServices] = useState([]);
-  const [newService, setNewService] = useState({ title: '', description: '' });
+  const [newService, setNewService] = useState({ title: '', description: '', image: '' });
   const [editingService, setEditingService] = useState(null);
   const token = localStorage.getItem("token");
 
@@ -23,12 +23,13 @@ const DashboardService = () => {
 
   // Handle Add Service
   const handleAddService = () => {
-    api.post('/services', newService, {headers: { 
-        Authorization: token ? `Bearer ${token}` : "", 
-          },withCredentials: true})
+    api.post('/services', newService, {
+      headers: { Authorization: token ? `Bearer ${token}` : "" },
+      withCredentials: true
+    })
       .then(response => {
-        setServices([response.data,...services ]);
-        setNewService({ title: '', description: '' }); 
+        setServices([response.data, ...services]);
+        setNewService({ title: '', description: '', image: '' });
       })
       .catch(error => {
         console.error('Error adding service:', error);
@@ -38,17 +39,18 @@ const DashboardService = () => {
   // Handle Edit Service
   const handleEditService = (service) => {
     setEditingService(service);
-    setNewService({ title: service.title, description: service.description });
+    setNewService({ title: service.title, description: service.description, image: service.image });
   };
 
   const handleUpdateService = () => {
-    api.put(`/services/${editingService._id}`, newService, {headers: { 
-        Authorization: token ? `Bearer ${token}` : "",
-          },withCredentials: true})
+    api.put(`/services/${editingService._id}`, newService, {
+      headers: { Authorization: token ? `Bearer ${token}` : "" },
+      withCredentials: true
+    })
       .then(response => {
         setServices(services.map(service => service._id === editingService._id ? response.data : service));
         setEditingService(null); // Clear editing mode
-        setNewService({ title: '', description: '' });
+        setNewService({ title: '', description: '', image: '' });
       })
       .catch(error => {
         console.error('Error updating service:', error);
@@ -57,9 +59,10 @@ const DashboardService = () => {
 
   // Handle Delete Service
   const handleDeleteService = (id) => {
-    api.delete(`/services/${id}`, {headers: { 
-        Authorization: token ? `Bearer ${token}` : "", 
-          },withCredentials: true})
+    api.delete(`/services/${id}`, {
+      headers: { Authorization: token ? `Bearer ${token}` : "" },
+      withCredentials: true
+    })
       .then(() => {
         setServices(services.filter(service => service._id !== id));
       })
@@ -78,6 +81,7 @@ const DashboardService = () => {
           <input
             type="text"
             className="form-control"
+            placeholder='Enter service title'
             id="title"
             value={newService.title}
             onChange={(e) => setNewService({ ...newService, title: e.target.value })}
@@ -88,9 +92,21 @@ const DashboardService = () => {
           <textarea
             className="form-control"
             id="description"
+            placeholder='Enter service description'
             rows="4"
             value={newService.description}
             onChange={(e) => setNewService({ ...newService, description: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="image">Image URL</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder='eg. https://5.imimg.com/data5/SELLER/Default/2024/7/433956451/ZL/BS/GS/15037679/web-designing-course.jpg'
+            id="image"
+            value={newService.image}
+            onChange={(e) => setNewService({ ...newService, image: e.target.value })}
           />
         </div>
         <button
@@ -105,6 +121,8 @@ const DashboardService = () => {
       <table className="table table-bordered">
         <thead>
           <tr>
+            <th>Sl.</th>
+            <th>Image</th>
             <th>Service Name</th>
             <th>Description</th>
             <th>Actions</th>
@@ -112,10 +130,18 @@ const DashboardService = () => {
         </thead>
         <tbody>
           {services.length > 0 ? (
-            services.map((service) => (
+            services.map((service,index) => (
               <tr key={service._id}>
+                <td>{index+1}</td>
                 <td>{service.title}</td>
                 <td>{service.description.slice(0, 120)}...</td>
+                <td>
+                  {service.image ? (
+                    <img src={service.image} alt="Service" className="img-thumbnail" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+                  ) : (
+                    'No Image'
+                  )}
+                </td>
                 <td>
                   <button
                     className="btn btn-warning me-2"
@@ -134,7 +160,7 @@ const DashboardService = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="3" className="text-center">
+              <td colSpan="4" className="text-center">
                 No services available.
               </td>
             </tr>

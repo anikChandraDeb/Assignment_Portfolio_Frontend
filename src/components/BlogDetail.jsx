@@ -32,7 +32,6 @@ const BlogDetail = () => {
 
   return (
     <div Style="padding: 50px;
-            background: azure;
             color: black;
             min-height: 100vh;
             @media (max-width: 768px) {
@@ -42,7 +41,10 @@ const BlogDetail = () => {
             }
   ">
       <h2>{blog.title}</h2>
+      <br />
       <div>
+      <img src={blog.image || "https://www.creativeitinstitute.com/images/course/course_1662795698.jpg"} className="card-img-top" alt={blog.title} height={"300px"}/>
+        <br /> <br />
         <p>{blog.content}</p>
       </div>
     </div>

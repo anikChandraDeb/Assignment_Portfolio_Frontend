@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://portfolio-backend-zeta-ashy.vercel.app/api', 
+    baseURL: 'http://localhost:5050/api', 
     headers: {
         'Content-Type': 'application/json',
     }

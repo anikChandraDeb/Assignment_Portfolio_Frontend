@@ -5,15 +5,14 @@ import api from '../axios.js';
 
 const DashboardTeam = () => {
   const [teams, setTeams] = useState([]);
-  const [newTeam, setNewTeam] = useState({ name: '', description: '' });
+  const [newTeam, setNewTeam] = useState({ name: '', description: '', image: '' });
   const [editingTeam, setEditingTeam] = useState(null);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    // Fetch all teams when the component mounts
     api.get('/team')
       .then(response => {
-        setTeams(response.data); 
+        setTeams(response.data);
         console.log('Teams fetched:', response);
       })
       .catch(error => {
@@ -23,12 +22,14 @@ const DashboardTeam = () => {
 
   // Handle Add Team
   const handleAddTeam = () => {
-    api.post('/team', newTeam, {headers: { 
-            Authorization: token ? `Bearer ${token}` : "",
-              },withCredentials: true})
+    api.post('/team', newTeam, {
+      headers: { Authorization: token ? `Bearer ${token}` : "" },
+      withCredentials: true
+    })
       .then(response => {
-        setTeams([response.data,...teams ]);
-        setNewTeam({ name: '', description: '' });
+        console.log("Team added successfully:", response.data);
+        setTeams([response.data, ...teams]);
+        setNewTeam({ name: '', description: '', image: '' });
       })
       .catch(error => {
         console.error('Error adding team:', error);
@@ -38,18 +39,19 @@ const DashboardTeam = () => {
   // Handle Edit Team
   const handleEditTeam = (team) => {
     setEditingTeam(team);
-    setNewTeam({ name: team.name, description: team.description });
+    setNewTeam({ name: team.name, description: team.description, image: team.image });
   };
 
   // Handle Update Team
   const handleUpdateTeam = () => {
-    api.put(`/team/${editingTeam._id}`, newTeam,{headers: { 
-        Authorization: token ? `Bearer ${token}` : "",
-          },withCredentials: true})
+    api.put(`/team/${editingTeam._id}`, newTeam, {
+      headers: { Authorization: token ? `Bearer ${token}` : "" },
+      withCredentials: true
+    })
       .then(response => {
         setTeams(teams.map(team => team._id === editingTeam._id ? response.data : team));
-        setEditingTeam(null); 
-        setNewTeam({ name: '', description: '' }); 
+        setEditingTeam(null);
+        setNewTeam({ name: '', description: '', image: '' });
       })
       .catch(error => {
         console.error('Error updating team:', error);
@@ -58,9 +60,10 @@ const DashboardTeam = () => {
 
   // Handle Delete Team
   const handleDeleteTeam = (id) => {
-    api.delete(`/team/${id}`, {headers: { 
-        Authorization: token ? `Bearer ${token}` : "", 
-          },withCredentials: true})
+    api.delete(`/team/${id}`, {
+      headers: { Authorization: token ? `Bearer ${token}` : "" },
+      withCredentials: true
+    })
       .then(() => {
         setTeams(teams.filter(team => team._id !== id));
       })
@@ -79,6 +82,7 @@ const DashboardTeam = () => {
           <input
             type="text"
             className="form-control"
+            placeholder='Enter team name'
             id="name"
             value={newTeam.name}
             onChange={(e) => setNewTeam({ ...newTeam, name: e.target.value })}
@@ -89,9 +93,21 @@ const DashboardTeam = () => {
           <input
             type="text"
             className="form-control"
+            placeholder='Enter team description'
             id="description"
             value={newTeam.description}
             onChange={(e) => setNewTeam({ ...newTeam, description: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="image">Image</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder='eg. https://5.imimg.com/data5/SELLER/Default/2024/7/433956451/ZL/BS/GS/15037679/web-designing-course.jpg'
+            id="image"
+            value={newTeam.image}
+            onChange={(e) => setNewTeam({ ...newTeam, image: e.target.value })}
           />
         </div>
         <button
@@ -106,6 +122,8 @@ const DashboardTeam = () => {
       <table className="table table-bordered">
         <thead>
           <tr>
+            <th>Sl.</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Description</th>
             <th>Actions</th>
@@ -113,10 +131,18 @@ const DashboardTeam = () => {
         </thead>
         <tbody>
           {teams.length > 0 ? (
-            teams.map((team) => (
+            teams.map((team,index) => (
               <tr key={team._id}>
+                <td>{index+1}</td>
                 <td>{team.name}</td>
                 <td>{team.description}</td>
+                <td>
+                  {team.image ? (
+                    <img src={team.image} alt="Team" className="img-thumbnail" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+                  ) : (
+                    'No Image'
+                  )}
+                </td>
                 <td>
                   <button
                     className="btn btn-warning me-2"
@@ -135,7 +161,7 @@ const DashboardTeam = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="3" className="text-center">
+              <td colSpan="4" className="text-center">
                 No teams available.
               </td>
             </tr>

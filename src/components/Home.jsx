@@ -1,33 +1,83 @@
-import React from "react";
-import { Link } from 'react-router-dom';
-import Blog from "./Blog"; 
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { scroller } from "react-scroll"; // For smooth scrolling
+import Blog from "./Blog";
 import Footer from "./Footer";
-import '../assets/css/Home.css';
-import anik from '../assets/images/anik.jpeg'
+import "../assets/css/Home.css";
+import anik from "../assets/images/anik.jpeg";
+import Skills from "./Skills";
+import Education from "./Education";
+import CompetitiveProgramming from "./CompetitiveProgramming";
+import ProblemSolving from "./ProblemSolving";
+import Leadership from "./Leadership";
 
 const Home = () => {
+  const location = useLocation(); // Access the location object to check for passed state
+
+  useEffect(() => {
+    // Check if scrollToSkills state is passed
+    if (location.state && location.state.scrollToSkills) {
+      // Scroll to the "skills" section
+      scroller.scrollTo("skills", {
+        smooth: true,
+        duration: 500,
+        offset: -70, // Adjust offset to account for fixed navbar
+      });
+    }
+  }, [location]);
+
   return (
     <>
       {/* Hero Section */}
-      <div className="container">
-            <div className="row custom-design">
-                <div className="col-6">
-                    <h2>Building Scalable & Efficient Web Application</h2>
-                    <p>I specialize in developing high-performance web applications with a focus on clean code, scalability, and seamless user experiences... </p>
-                   <button className="btn btn-primary"><Link className="nav-link" to="/contact">Contact Me</Link></button>
-                </div>
-                <div className="col-6">
-                    <img src={anik} alt="anik-image" />
-                </div>
+      <section id="home">
+        <div className="container py-5 custom-design-home">
+          <div className="row align-items-center">
+            <div className="col-md-6">
+              <h2>Hi! I am Anik Chandra Deb.</h2>
+              <p>
+                I am a passionate software developer seeking a Junior Software
+                Engineer Intern or Junior Full-Stack Developer Intern role.
+                Skilled in MERN stack and competitive programming, I thrive in
+                building scalable applications and solving complex problems...
+              </p>
+              <a href="/contact">
+                <button className="btn btn-custom">Contact Me</button>
+              </a>
+              <a href="/Anik_Resume.pdf" download="Anikcd_Resume.pdf">
+                <button className="btn btn-custom">Resume</button>
+              </a>
             </div>
-      </div>
+            <div className="col-md-6 text-center">
+              <img src={anik} className="img-fluid" alt="Anik" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sections */}
+      <section id="skills">
+        <Skills />
+      </section>
+      <section id="cp-experience">
+        <CompetitiveProgramming />
+      </section>
+      <section id="problem-solving">
+        <ProblemSolving />
+      </section>
+      <section id="education">
+        <Education />
+      </section>
+      <section id="leadership">
+        <Leadership />
+      </section>
 
       {/* Blog Section */}
-      <Blog limit="6" />
+      {/* Uncomment and modify the Blog component if necessary */}
+      {/* <Blog limit="6" page="home" /> */}
+
 
     </>
   );
 };
 
 export default Home;
-
