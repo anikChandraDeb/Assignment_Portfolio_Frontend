@@ -10,6 +10,7 @@ import Education from "./Education";
 import CompetitiveProgramming from "./CompetitiveProgramming";
 import ProblemSolving from "./ProblemSolving";
 import Leadership from "./Leadership";
+import Projects from "./Projects";
 
 const Home = () => {
   
