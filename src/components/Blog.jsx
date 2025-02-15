@@ -12,6 +12,7 @@ const Blog = ({ limit,page }) => {
         setLoading(true);
         api.get(`/blogs/${limit}`)
             .then(response => {
+                console.log("API Response:", response.data);
                 setBlogs(response.data);
                 setLoading(false);
             })
