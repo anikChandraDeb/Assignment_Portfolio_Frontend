@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { HashLink } from "react-router-hash-link";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Projects from './Projects';
 
 const Navbar = () => {
     const [isCollapsed, setIsCollapsed] = useState(true);
@@ -47,6 +47,9 @@ const Navbar = () => {
                                     <ScrollLink className="nav-link" to="problem-solving" smooth={true} duration={500} onClick={handleCollapse}  style={{ cursor: "pointer" }}>Problem Solving</ScrollLink>
                                 </li>
                                 <li className="nav-item">
+                                    <ScrollLink className="nav-link" to="projects" smooth={true} duration={500} onClick={handleCollapse}  style={{ cursor: "pointer" }}>Projects</ScrollLink>
+                                </li>
+                                <li className="nav-item">
                                     <ScrollLink className="nav-link" to="education" smooth={true} duration={500} onClick={handleCollapse}  style={{ cursor: "pointer" }}>Education</ScrollLink>
                                 </li>
                                 <li className="nav-item">
@@ -78,6 +81,9 @@ const Navbar = () => {
                                 </li>
                                 <li className="nav-item">
                                     <RouterLink className="nav-link" to="/#problem-solving" onClick={handleCollapse}>Problem Solving</RouterLink>
+                                </li>
+                                <li className="nav-item">
+                                    <RouterLink className="nav-link" to="/#projects" onClick={handleCollapse}>Projects</RouterLink>
                                 </li>
                                 <li className="nav-item">
                                     <RouterLink className="nav-link" to="/#education" onClick={handleCollapse}>Education</RouterLink>
