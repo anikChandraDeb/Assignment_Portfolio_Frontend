@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { HashLink } from "react-router-hash-link";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Navbar = () => {
@@ -70,19 +71,19 @@ const Navbar = () => {
                                     <RouterLink className="nav-link" to="/" onClick={handleCollapse}>Home</RouterLink>
                                 </li>
                                 <li className="nav-item">
-                                    <RouterLink className="nav-link" to="/" onClick={handleCollapse}>Skills</RouterLink>
+                                    <RouterLink className="nav-link" to="/#skills" onClick={handleCollapse}>Skills</RouterLink>
                                 </li>
                                 <li className="nav-item">
-                                    <RouterLink className="nav-link" to="/" onClick={handleCollapse}>CP Experience</RouterLink>
+                                    <RouterLink className="nav-link" to="/#cp-experience" onClick={handleCollapse}>CP Experience</RouterLink>
                                 </li>
                                 <li className="nav-item">
-                                    <RouterLink className="nav-link" to="/" onClick={handleCollapse}>Problem Solving</RouterLink>
+                                    <RouterLink className="nav-link" to="/#problem-solving" onClick={handleCollapse}>Problem Solving</RouterLink>
                                 </li>
                                 <li className="nav-item">
-                                    <RouterLink className="nav-link" to="/" onClick={handleCollapse}>Education</RouterLink>
+                                    <RouterLink className="nav-link" to="/#education" onClick={handleCollapse}>Education</RouterLink>
                                 </li>
                                 <li className="nav-item">
-                                    <RouterLink className="nav-link" to="/" onClick={handleCollapse}>Leadership</RouterLink>
+                                    <RouterLink className="nav-link" to="/#leadership" onClick={handleCollapse}>Leadership</RouterLink>
                                 </li>
                                 <li className="nav-item">
                                     <RouterLink className="nav-link" to="/about" onClick={handleCollapse}>Teams</RouterLink>

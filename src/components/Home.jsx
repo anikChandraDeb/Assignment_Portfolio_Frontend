@@ -12,20 +12,15 @@ import ProblemSolving from "./ProblemSolving";
 import Leadership from "./Leadership";
 
 const Home = () => {
-  const location = useLocation(); // Access the location object to check for passed state
-
-  useEffect(() => {
-    // Check if scrollToSkills state is passed
-    if (location.state && location.state.scrollToSkills) {
-      // Scroll to the "skills" section
-      scroller.scrollTo("skills", {
-        smooth: true,
-        duration: 500,
-        offset: -70, // Adjust offset to account for fixed navbar
-      });
-    }
-  }, [location]);
-
+  
+    useEffect(() => {
+        if (window.location.hash) {
+            const element = document.getElementById(window.location.hash.substring(1));
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, []);
   return (
     <>
       {/* Hero Section */}
