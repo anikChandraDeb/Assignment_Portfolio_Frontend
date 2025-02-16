@@ -9,7 +9,7 @@ const DashboardBlog = () => {
     const [newBlog, setNewBlog] = useState({ title: '', content: '', image: '' });
     const [editingBlog, setEditingBlog] = useState(null);
     const token = localStorage.getItem("token");
-
+    console.log('token'+token);
     useEffect(() => {
         api.get('/blogs/0')
             .then(response => setBlogs(response.data))
@@ -18,6 +18,7 @@ const DashboardBlog = () => {
 
     // Handle Add Blog
     const handleAddBlog = () => {
+        console.log('token'+token);
         api.post('/blogs', newBlog, { headers: { Authorization: token ? `Bearer ${token}` : "" }, withCredentials: true })
             .then(response => {
                 setBlogs([response.data, ...blogs]);
